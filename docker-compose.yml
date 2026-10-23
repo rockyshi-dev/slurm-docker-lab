@@ -3,10 +3,6 @@
 x-slurm: &slurm
   image: slurm-lab:local
   build: .
-  volumes:
-    - ./config:/etc/slurm-lab:ro
-    - ./exercises:/home/lab/exercises:ro
-    - ./data/shared:/shared
   networks: [slurm]
   restart: "no"
 
@@ -16,7 +12,7 @@ services:
     container_name: mariadb
     hostname: mariadb
     environment:
-      MARIADB_ROOT_PASSWORD: rootlab
+      MARIADB_RANDOM_ROOT_PASSWORD: "1"
       MARIADB_DATABASE: slurm_acct_db
       MARIADB_USER: slurm
       MARIADB_PASSWORD: slurmlab

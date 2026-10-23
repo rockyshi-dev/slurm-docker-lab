@@ -3,7 +3,7 @@ FROM ubuntu:24.04
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
         slurm-wlm slurmdbd slurm-client munge mariadb-client \
-        python3 python3-venv iproute2 iputils-ping procps less vim-tiny ca-certificates \
+        python3 python3-venv ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 # torch, CPU wheel only (the DDP exercise uses the gloo backend)
 RUN python3 -m venv /opt/venv && /opt/venv/bin/pip install --no-cache-dir \
